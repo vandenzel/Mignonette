@@ -1,0 +1,26 @@
+
+attack.c,1138
+#define NumBadGuys NumBadGuys101,2806
+#define maskB maskB112,2917
+#define maskD maskD113,2935
+#define maskC maskC114,2956
+void delayShorter(void)delayShorter119,2982
+void delayShort(void)delayShort132,3136
+void delayLong()delayLong145,3290
+void dc() // Very Long Delaydc169,3463
+unsigned short redMatrix[5];redMatrix187,3700
+unsigned short grnMatrix[5];grnMatrix188,3730
+void display (void)display191,3764
+void lose(void) // 'you lose' displaylose255,4965
+void levelup(void) // next levellevelup270,5224
+void bomb(void) // 'bomb' displaybomb280,5373
+unsigned short getpoint(unsigned short xin, unsigned short yin)getpoint357,6423
+void drawpoint(unsigned short xin, unsigned short yin, unsigned short color)drawpoint382,6749
+void xdrawpoint(unsigned short xin, unsigned short yin, unsigned short color)xdrawpoint400,7040
+void erasepoint(unsigned short xin, unsigned short yin)erasepoint420,7334
+void eraseall(void)eraseall430,7479
+struct badguystructbadguystruct449,7615
+unsigned short xpos;xpos451,7643
+unsigned short ypos;ypos452,7665
+short color;color453,7687
+int main (void)main459,7722
