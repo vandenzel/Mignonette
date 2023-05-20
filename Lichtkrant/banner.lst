@@ -1,0 +1,441 @@
+
+banner.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000002  00800100  0000024e  000002c2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000024e  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .stab         00000e4c  00000000  00000000  000002c4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      000009fe  00000000  00000000  00001110  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	53 c0       	rjmp	.+166    	; 0xa8 <__ctors_end>
+   2:	6d c0       	rjmp	.+218    	; 0xde <__bad_interrupt>
+   4:	6c c0       	rjmp	.+216    	; 0xde <__bad_interrupt>
+   6:	6b c0       	rjmp	.+214    	; 0xde <__bad_interrupt>
+   8:	6a c0       	rjmp	.+212    	; 0xde <__bad_interrupt>
+   a:	69 c0       	rjmp	.+210    	; 0xde <__bad_interrupt>
+   c:	68 c0       	rjmp	.+208    	; 0xde <__bad_interrupt>
+   e:	67 c0       	rjmp	.+206    	; 0xde <__bad_interrupt>
+  10:	66 c0       	rjmp	.+204    	; 0xde <__bad_interrupt>
+  12:	65 c0       	rjmp	.+202    	; 0xde <__bad_interrupt>
+  14:	64 c0       	rjmp	.+200    	; 0xde <__bad_interrupt>
+  16:	63 c0       	rjmp	.+198    	; 0xde <__bad_interrupt>
+  18:	62 c0       	rjmp	.+196    	; 0xde <__bad_interrupt>
+  1a:	61 c0       	rjmp	.+194    	; 0xde <__bad_interrupt>
+  1c:	60 c0       	rjmp	.+192    	; 0xde <__bad_interrupt>
+  1e:	5f c0       	rjmp	.+190    	; 0xde <__bad_interrupt>
+  20:	5e c0       	rjmp	.+188    	; 0xde <__bad_interrupt>
+  22:	5d c0       	rjmp	.+186    	; 0xde <__bad_interrupt>
+  24:	5c c0       	rjmp	.+184    	; 0xde <__bad_interrupt>
+  26:	5b c0       	rjmp	.+182    	; 0xde <__bad_interrupt>
+  28:	5a c0       	rjmp	.+180    	; 0xde <__bad_interrupt>
+  2a:	59 c0       	rjmp	.+178    	; 0xde <__bad_interrupt>
+  2c:	58 c0       	rjmp	.+176    	; 0xde <__bad_interrupt>
+  2e:	57 c0       	rjmp	.+174    	; 0xde <__bad_interrupt>
+  30:	56 c0       	rjmp	.+172    	; 0xde <__bad_interrupt>
+  32:	55 c0       	rjmp	.+170    	; 0xde <__bad_interrupt>
+
+00000034 <banner_text>:
+  34:	00 00 00 00 00 00 00 0e 11 15 0c 00 1f 15 15 11     ................
+  44:	00 1f 10 10 10 00 0f 10 10 0f 00 1f 04 0a 11 00     ................
+  54:	1f 04 0a 11 00 11 1f 11 00 0e 11 15 0c 00 00 00     ................
+  64:	00 00 00 1f 06 0c 1f 00 11 1f 11 00 1f 15 15 11     ................
+  74:	00 0f 10 10 0f 00 1f 10 1c 10 1f 00 10 11 0f 00     ................
+  84:	1e 05 05 1e 00 1e 05 05 1e 00 1f 05 0d 16 00 00     ................
+  94:	17 00 17 00 00 00 00 0a 00 00 11 0e 00 00 00 00     ................
+  a4:	00 00 00 00                                         ....
+
+000000a8 <__ctors_end>:
+  a8:	11 24       	eor	r1, r1
+  aa:	1f be       	out	0x3f, r1	; 63
+  ac:	cf ef       	ldi	r28, 0xFF	; 255
+  ae:	d4 e0       	ldi	r29, 0x04	; 4
+  b0:	de bf       	out	0x3e, r29	; 62
+  b2:	cd bf       	out	0x3d, r28	; 61
+
+000000b4 <__do_copy_data>:
+  b4:	11 e0       	ldi	r17, 0x01	; 1
+  b6:	a0 e0       	ldi	r26, 0x00	; 0
+  b8:	b1 e0       	ldi	r27, 0x01	; 1
+  ba:	ee e4       	ldi	r30, 0x4E	; 78
+  bc:	f2 e0       	ldi	r31, 0x02	; 2
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <.do_copy_data_start>
+
+000000c0 <.do_copy_data_loop>:
+  c0:	05 90       	lpm	r0, Z+
+  c2:	0d 92       	st	X+, r0
+
+000000c4 <.do_copy_data_start>:
+  c4:	a2 30       	cpi	r26, 0x02	; 2
+  c6:	b1 07       	cpc	r27, r17
+  c8:	d9 f7       	brne	.-10     	; 0xc0 <.do_copy_data_loop>
+
+000000ca <__do_clear_bss>:
+  ca:	11 e0       	ldi	r17, 0x01	; 1
+  cc:	a2 e0       	ldi	r26, 0x02	; 2
+  ce:	b1 e0       	ldi	r27, 0x01	; 1
+  d0:	01 c0       	rjmp	.+2      	; 0xd4 <.do_clear_bss_start>
+
+000000d2 <.do_clear_bss_loop>:
+  d2:	1d 92       	st	X+, r1
+
+000000d4 <.do_clear_bss_start>:
+  d4:	a2 30       	cpi	r26, 0x02	; 2
+  d6:	b1 07       	cpc	r27, r17
+  d8:	e1 f7       	brne	.-8      	; 0xd2 <.do_clear_bss_loop>
+  da:	02 d0       	rcall	.+4      	; 0xe0 <main>
+  dc:	b6 c0       	rjmp	.+364    	; 0x24a <_exit>
+
+000000de <__bad_interrupt>:
+  de:	90 cf       	rjmp	.-224    	; 0x0 <__heap_end>
+
+000000e0 <main>:
+#include <avr/pgmspace.h>
+#include <util/delay.h>
+
+#include "tekst.h"
+
+int main() {
+  e0:	2f 92       	push	r2
+  e2:	3f 92       	push	r3
+  e4:	4f 92       	push	r4
+  e6:	5f 92       	push	r5
+  e8:	6f 92       	push	r6
+  ea:	7f 92       	push	r7
+  ec:	8f 92       	push	r8
+  ee:	9f 92       	push	r9
+  f0:	af 92       	push	r10
+  f2:	bf 92       	push	r11
+  f4:	cf 92       	push	r12
+  f6:	df 92       	push	r13
+  f8:	ef 92       	push	r14
+  fa:	ff 92       	push	r15
+  fc:	0f 93       	push	r16
+  fe:	1f 93       	push	r17
+ 100:	df 93       	push	r29
+ 102:	cf 93       	push	r28
+ 104:	00 d0       	rcall	.+0      	; 0x106 <main+0x26>
+ 106:	0f 92       	push	r0
+ 108:	cd b7       	in	r28, 0x3d	; 61
+ 10a:	de b7       	in	r29, 0x3e	; 62
+	// setup
+   
+        uint8_t col;
+	uint8_t rep;
+
+        DDRC |= 0xff;	// bit 1..5 0111 1110
+ 10c:	87 b1       	in	r24, 0x07	; 7
+ 10e:	8f ef       	ldi	r24, 0xFF	; 255
+ 110:	87 b9       	out	0x07, r24	; 7
+	DDRD |= 0x7f;	// bit 0..6 0111 1111
+ 112:	8a b1       	in	r24, 0x0a	; 10
+ 114:	8f 67       	ori	r24, 0x7F	; 127
+ 116:	8a b9       	out	0x0a, r24	; 10
+	DDRB |= 0xf8;	// bit 3..7 1111 1000
+ 118:	84 b1       	in	r24, 0x04	; 4
+ 11a:	88 6f       	ori	r24, 0xF8	; 248
+ 11c:	84 b9       	out	0x04, r24	; 4
+
+        PORTB = 0x01;
+ 11e:	81 e0       	ldi	r24, 0x01	; 1
+ 120:	85 b9       	out	0x05, r24	; 5
+
+#define green(n) PORTC = ( pgm_read_byte( &( banner_text[ col + (n) ] ) ) << 1 ); 
+
+	for ( ;; ) {
+
+           for ( col = 0; col < banner_length; col++ ) {
+ 122:	90 90 00 01 	lds	r9, 0x0100
+ 126:	50 e0       	ldi	r21, 0x00	; 0
+
+                for ( rep = 0; rep < 10; rep++ ) {
+
+		    PORTD = 0x40;
+ 128:	e0 e4       	ldi	r30, 0x40	; 64
+ 12a:	2e 2e       	mov	r2, r30
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 12c:	24 ec       	ldi	r18, 0xC4	; 196
+ 12e:	39 e0       	ldi	r19, 0x09	; 9
+                    green(0);
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 0 ] ) ) << 1 );
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 0 ] ) ) << 3 );
+		    _delay_ms( 10);
+
+		    PORTD = 0x20;
+ 130:	70 e2       	ldi	r23, 0x20	; 32
+ 132:	37 2e       	mov	r3, r23
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 1 ] ) ) << 1 );
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 1 ] ) ) << 3 );
+		    _delay_ms(10);
+
+		    PORTD = 0x10;
+ 134:	60 e1       	ldi	r22, 0x10	; 16
+ 136:	56 2e       	mov	r5, r22
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 2 ] ) ) << 1 );
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 2 ] ) ) << 3 );
+		    _delay_ms(10);
+
+		    PORTD = 0x08;
+ 138:	48 e0       	ldi	r20, 0x08	; 8
+ 13a:	44 2e       	mov	r4, r20
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 3 ] ) ) << 1 );
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 3 ] ) ) << 3 );
+		    _delay_ms(10);
+
+		    PORTD = 0x04;
+ 13c:	94 e0       	ldi	r25, 0x04	; 4
+ 13e:	69 2e       	mov	r6, r25
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 4 ] ) ) << 1 );
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 4 ] ) ) << 3 );
+		    _delay_ms(10);
+
+		    PORTD = 0x02;
+ 140:	82 e0       	ldi	r24, 0x02	; 2
+ 142:	78 2e       	mov	r7, r24
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 5 ] ) ) << 1 );
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 5 ] ) ) << 3 );
+		    _delay_ms(10);
+
+		    PORTD = 0x01;
+ 144:	88 24       	eor	r8, r8
+ 146:	83 94       	inc	r8
+ 148:	01 c0       	rjmp	.+2      	; 0x14c <main+0x6c>
+
+#define green(n) PORTC = ( pgm_read_byte( &( banner_text[ col + (n) ] ) ) << 1 ); 
+
+	for ( ;; ) {
+
+           for ( col = 0; col < banner_length; col++ ) {
+ 14a:	50 e0       	ldi	r21, 0x00	; 0
+ 14c:	59 15       	cp	r21, r9
+ 14e:	e8 f7       	brcc	.-6      	; 0x14a <main+0x6a>
+ 150:	40 e0       	ldi	r20, 0x00	; 0
+ 152:	85 2f       	mov	r24, r21
+ 154:	90 e0       	ldi	r25, 0x00	; 0
+
+                for ( rep = 0; rep < 10; rep++ ) {
+
+		    PORTD = 0x40;
+                    green(0);
+ 156:	fc 01       	movw	r30, r24
+ 158:	ec 5c       	subi	r30, 0xCC	; 204
+ 15a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 15c:	e4 91       	lpm	r30, Z+
+ 15e:	6e 2f       	mov	r22, r30
+ 160:	66 0f       	add	r22, r22
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 0 ] ) ) << 1 );
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 0 ] ) ) << 3 );
+ 162:	ae 2e       	mov	r10, r30
+ 164:	aa 0c       	add	r10, r10
+ 166:	aa 0c       	add	r10, r10
+ 168:	aa 0c       	add	r10, r10
+		    _delay_ms( 10);
+
+		    PORTD = 0x20;
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 1 ] ) ) << 1 );
+ 16a:	fc 01       	movw	r30, r24
+ 16c:	eb 5c       	subi	r30, 0xCB	; 203
+ 16e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 170:	e4 91       	lpm	r30, Z+
+ 172:	be 2e       	mov	r11, r30
+ 174:	bb 0c       	add	r11, r11
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 1 ] ) ) << 3 );
+ 176:	ce 2e       	mov	r12, r30
+ 178:	cc 0c       	add	r12, r12
+ 17a:	cc 0c       	add	r12, r12
+ 17c:	cc 0c       	add	r12, r12
+		    _delay_ms(10);
+
+		    PORTD = 0x10;
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 2 ] ) ) << 1 );
+ 17e:	fc 01       	movw	r30, r24
+ 180:	ea 5c       	subi	r30, 0xCA	; 202
+ 182:	ff 4f       	sbci	r31, 0xFF	; 255
+ 184:	e4 91       	lpm	r30, Z+
+ 186:	de 2e       	mov	r13, r30
+ 188:	dd 0c       	add	r13, r13
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 2 ] ) ) << 3 );
+ 18a:	ee 2e       	mov	r14, r30
+ 18c:	ee 0c       	add	r14, r14
+ 18e:	ee 0c       	add	r14, r14
+ 190:	ee 0c       	add	r14, r14
+		    _delay_ms(10);
+
+		    PORTD = 0x08;
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 3 ] ) ) << 1 );
+ 192:	fc 01       	movw	r30, r24
+ 194:	e9 5c       	subi	r30, 0xC9	; 201
+ 196:	ff 4f       	sbci	r31, 0xFF	; 255
+ 198:	e4 91       	lpm	r30, Z+
+ 19a:	fe 2e       	mov	r15, r30
+ 19c:	ff 0c       	add	r15, r15
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 3 ] ) ) << 3 );
+ 19e:	0e 2f       	mov	r16, r30
+ 1a0:	00 0f       	add	r16, r16
+ 1a2:	00 0f       	add	r16, r16
+ 1a4:	00 0f       	add	r16, r16
+		    _delay_ms(10);
+
+		    PORTD = 0x04;
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 4 ] ) ) << 1 );
+ 1a6:	fc 01       	movw	r30, r24
+ 1a8:	e8 5c       	subi	r30, 0xC8	; 200
+ 1aa:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ac:	e4 91       	lpm	r30, Z+
+ 1ae:	1e 2f       	mov	r17, r30
+ 1b0:	11 0f       	add	r17, r17
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 4 ] ) ) << 3 );
+ 1b2:	be 2f       	mov	r27, r30
+ 1b4:	bb 0f       	add	r27, r27
+ 1b6:	bb 0f       	add	r27, r27
+ 1b8:	bb 0f       	add	r27, r27
+		    _delay_ms(10);
+
+		    PORTD = 0x02;
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 5 ] ) ) << 1 );
+ 1ba:	fc 01       	movw	r30, r24
+ 1bc:	e7 5c       	subi	r30, 0xC7	; 199
+ 1be:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1c0:	f4 91       	lpm	r31, Z+
+ 1c2:	f9 83       	std	Y+1, r31	; 0x01
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 5 ] ) ) << 3 );
+ 1c4:	af 2f       	mov	r26, r31
+ 1c6:	aa 0f       	add	r26, r26
+ 1c8:	aa 0f       	add	r26, r26
+ 1ca:	aa 0f       	add	r26, r26
+		    _delay_ms(10);
+
+		    PORTD = 0x01;
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 6 ] ) ) << 1 );
+ 1cc:	86 5c       	subi	r24, 0xC6	; 198
+ 1ce:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1d0:	fc 01       	movw	r30, r24
+ 1d2:	74 91       	lpm	r23, Z+
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 6 ] ) ) << 3 );
+ 1d4:	f7 2f       	mov	r31, r23
+ 1d6:	ff 0f       	add	r31, r31
+ 1d8:	ff 0f       	add	r31, r31
+ 1da:	ff 0f       	add	r31, r31
+ 1dc:	fa 83       	std	Y+2, r31	; 0x02
+
+           for ( col = 0; col < banner_length; col++ ) {
+
+                for ( rep = 0; rep < 10; rep++ ) {
+
+		    PORTD = 0x40;
+ 1de:	2b b8       	out	0x0b, r2	; 11
+                    green(0);
+ 1e0:	68 b9       	out	0x08, r22	; 8
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 0 ] ) ) << 1 );
+ 1e2:	68 b9       	out	0x08, r22	; 8
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 0 ] ) ) << 3 );
+ 1e4:	a5 b8       	out	0x05, r10	; 5
+ 1e6:	c9 01       	movw	r24, r18
+ 1e8:	01 97       	sbiw	r24, 0x01	; 1
+ 1ea:	f1 f7       	brne	.-4      	; 0x1e8 <main+0x108>
+		    _delay_ms( 10);
+
+		    PORTD = 0x20;
+ 1ec:	3b b8       	out	0x0b, r3	; 11
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 1 ] ) ) << 1 );
+ 1ee:	b8 b8       	out	0x08, r11	; 8
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 1 ] ) ) << 3 );
+ 1f0:	c5 b8       	out	0x05, r12	; 5
+ 1f2:	c9 01       	movw	r24, r18
+ 1f4:	01 97       	sbiw	r24, 0x01	; 1
+ 1f6:	f1 f7       	brne	.-4      	; 0x1f4 <main+0x114>
+		    _delay_ms(10);
+
+		    PORTD = 0x10;
+ 1f8:	5b b8       	out	0x0b, r5	; 11
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 2 ] ) ) << 1 );
+ 1fa:	d8 b8       	out	0x08, r13	; 8
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 2 ] ) ) << 3 );
+ 1fc:	e5 b8       	out	0x05, r14	; 5
+ 1fe:	c9 01       	movw	r24, r18
+ 200:	01 97       	sbiw	r24, 0x01	; 1
+ 202:	f1 f7       	brne	.-4      	; 0x200 <main+0x120>
+		    _delay_ms(10);
+
+		    PORTD = 0x08;
+ 204:	4b b8       	out	0x0b, r4	; 11
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 3 ] ) ) << 1 );
+ 206:	f8 b8       	out	0x08, r15	; 8
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 3 ] ) ) << 3 );
+ 208:	05 b9       	out	0x05, r16	; 5
+ 20a:	c9 01       	movw	r24, r18
+ 20c:	01 97       	sbiw	r24, 0x01	; 1
+ 20e:	f1 f7       	brne	.-4      	; 0x20c <main+0x12c>
+		    _delay_ms(10);
+
+		    PORTD = 0x04;
+ 210:	6b b8       	out	0x0b, r6	; 11
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 4 ] ) ) << 1 );
+ 212:	18 b9       	out	0x08, r17	; 8
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 4 ] ) ) << 3 );
+ 214:	b5 b9       	out	0x05, r27	; 5
+ 216:	c9 01       	movw	r24, r18
+ 218:	01 97       	sbiw	r24, 0x01	; 1
+ 21a:	f1 f7       	brne	.-4      	; 0x218 <main+0x138>
+		    _delay_ms(10);
+
+		    PORTD = 0x02;
+ 21c:	7b b8       	out	0x0b, r7	; 11
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 5 ] ) ) << 1 );
+ 21e:	89 81       	ldd	r24, Y+1	; 0x01
+ 220:	88 0f       	add	r24, r24
+ 222:	88 b9       	out	0x08, r24	; 8
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 5 ] ) ) << 3 );
+ 224:	a5 b9       	out	0x05, r26	; 5
+ 226:	c9 01       	movw	r24, r18
+ 228:	01 97       	sbiw	r24, 0x01	; 1
+ 22a:	f1 f7       	brne	.-4      	; 0x228 <main+0x148>
+		    _delay_ms(10);
+
+		    PORTD = 0x01;
+ 22c:	8b b8       	out	0x0b, r8	; 11
+		    PORTC = ( pgm_read_byte( &( banner_text[ col + 6 ] ) ) << 1 );
+ 22e:	87 2f       	mov	r24, r23
+ 230:	88 0f       	add	r24, r24
+ 232:	88 b9       	out	0x08, r24	; 8
+		    PORTB = ( pgm_read_byte( &( banner_text[ col + 6 ] ) ) << 3 );
+ 234:	8a 81       	ldd	r24, Y+2	; 0x02
+ 236:	85 b9       	out	0x05, r24	; 5
+ 238:	c9 01       	movw	r24, r18
+ 23a:	01 97       	sbiw	r24, 0x01	; 1
+ 23c:	f1 f7       	brne	.-4      	; 0x23a <main+0x15a>
+
+	for ( ;; ) {
+
+           for ( col = 0; col < banner_length; col++ ) {
+
+                for ( rep = 0; rep < 10; rep++ ) {
+ 23e:	4f 5f       	subi	r20, 0xFF	; 255
+ 240:	4a 30       	cpi	r20, 0x0A	; 10
+ 242:	09 f0       	breq	.+2      	; 0x246 <main+0x166>
+ 244:	cc cf       	rjmp	.-104    	; 0x1de <main+0xfe>
+
+#define green(n) PORTC = ( pgm_read_byte( &( banner_text[ col + (n) ] ) ) << 1 ); 
+
+	for ( ;; ) {
+
+           for ( col = 0; col < banner_length; col++ ) {
+ 246:	5f 5f       	subi	r21, 0xFF	; 255
+ 248:	81 cf       	rjmp	.-254    	; 0x14c <main+0x6c>
+
+0000024a <_exit>:
+ 24a:	f8 94       	cli
+
+0000024c <__stop_program>:
+ 24c:	ff cf       	rjmp	.-2      	; 0x24c <__stop_program>
